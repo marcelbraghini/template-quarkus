@@ -1,11 +1,11 @@
-package br.com.marcelbraghini.quarkusrest.endpoint;
+package templatequarkus.template.adapters.controllers;
 
-import br.com.marcelbraghini.quarkusrest.model.User;
-import br.com.marcelbraghini.quarkusrest.service.UserService;
 import org.bson.types.ObjectId;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
+import templatequarkus.template.adapters.databases.entities.UserEntity;
+import templatequarkus.template.application.services.UserService;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -33,8 +33,8 @@ public class UserResource {
     @Path("/{_id}")
     public Response read(@PathParam("_id") final String _id) {
         try {
-            final User user = userService.findById(new ObjectId(_id));
-            return Response.ok(user).build();
+            final UserEntity userEntity = userService.findById(new ObjectId(_id));
+            return Response.ok(userEntity).build();
         } catch (final Exception e) {
             logger.errorf("Usuário não encontrado: [HTTP-404] ");
             return Response.status(Response.Status.NOT_FOUND).build();
@@ -42,30 +42,24 @@ public class UserResource {
     }
 
     @POST
-    public Response create(@RequestBody @Valid final User user) {
+    public Response create(@RequestBody @Valid final UserEntity userEntity) {
         try {
-            final User model = userService.save(user);
+            final UserEntity model = userService.save(userEntity);
             return Response.created(URI.create(model.get_id().toHexString())).build();
         } catch (final Exception e) {
-            logger.errorf("Houve um erro ao criar um novo usuário: [HTTP-400] ");
+            logger.errorf("Houve um erro ao criar um novo usuário (verifique campo 'data' formato yyyy-MM-dd): [HTTP-400] ");
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
 
     @PUT
     @Path("/{_id}")
-    public Response edit(@PathParam("_id") final String _id, @RequestBody @Valid final User user) {
+    public Response edit(@PathParam("_id") final String _id, @RequestBody @Valid final UserEntity userEntity) {
         try {
-            final User userEdited = userService.findById(new ObjectId(_id));
-            userEdited.setLogin(user.getLogin());
-            userEdited.setName(user.getName());
-            userEdited.setBlog(user.getBlog());
-            userEdited.setLocation(user.getLocation());
-            userEdited.setBio(user.getBio());
-            userService.update(userEdited);
+            userService.update(new ObjectId(_id), userEntity);
             return Response.status(Response.Status.OK).build();
         } catch (final Exception e) {
-            logger.errorf("Usuário não encontrado: [HTTP-404] ");
+            logger.errorf("Erro ao atualizar (verifique 'data' yyyy-MM-dd ou ID): [HTTP-404/400] ");
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }

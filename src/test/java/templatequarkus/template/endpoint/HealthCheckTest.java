@@ -1,4 +1,4 @@
-package br.com.marcelbraghini.quarkusrest.endpoint;
+package templatequarkus.template.endpoint;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;

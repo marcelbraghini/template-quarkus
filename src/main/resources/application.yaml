@@ -1,6 +1,5 @@
-# YAML Configuration file
 quarkus:
-  token: kasdhasdhuyasGDUGASgduAGSDGASHDGJAHSD
+  token: abc
   http:
     port: 8080
     test-port: 8085
@@ -10,7 +9,9 @@ quarkus:
     path: /swagger
   mongodb:
     database: quarkus
-    connection-string: mongodb://root:root@localhost:27017
+    connection-string: ${MONGODB_CONNECTION_STRING:mongodb://root:root@localhost:27017/quarkus?authSource=admin}
+    username: ${MONGO_INITDB_ROOT_USERNAME:root}
+    password: ${MONGO_INITDB_ROOT_PASSWORD:root}
   log:
       enable: true
       level: INFO

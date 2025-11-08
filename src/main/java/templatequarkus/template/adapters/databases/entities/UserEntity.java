@@ -1,4 +1,4 @@
-package br.com.marcelbraghini.quarkusrest.model;
+package templatequarkus.template.adapters.databases.entities;
 
 import io.quarkus.mongodb.panache.MongoEntity;
 import io.quarkus.runtime.annotations.RegisterForReflection;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 @RegisterForReflection
 @MongoEntity(collection = "users")
-public class User {
+public class UserEntity {
 
     @BsonId
     public ObjectId _id;
@@ -40,14 +40,14 @@ public class User {
     @JsonbDateFormat(value = "yyyy-MM-dd")
     public LocalDate data = LocalDate.now();
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(final String login,
-                final String name,
-                final String blog,
-                final String location,
-                final String bio
+    public UserEntity(final String login,
+                      final String name,
+                      final String blog,
+                      final String location,
+                      final String bio
                 ) {
         this.login = login;
         this.name = name;

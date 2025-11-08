@@ -1,30 +1,37 @@
 openapi: 3.0.1
 info:
-  title: OpenAPI for quarkus rest
-  description: Documentation for quarkus rest
+  title: OpenAPI template quarkus
+  description: Documentação para template quarkus
   version: "1.0.0"
 
 servers:
   - url: http://localhost:8080/
-    description: Optional dev mode server description
+    description: Dev
 
 paths:
   /v1/users:
     get:
-      description: Get all users
+      description: Buscar todos os usuários
       responses:
         200:
           description: OK
           content:
             application/json: {}
     post:
-      description: Create new user
+      description: Criar um novo usuário
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
+            example:
+              bio: "Bem vindo a minha bio"
+              blog: "https://meublog.com"
+              data: "2025-11-03"
+              location: "Minha cidade"
+              login: "marcel.braghini"
+              name: "Marcel Braghini"
       responses:
         201:
           description: Created
@@ -35,8 +42,15 @@ paths:
           content:
             application/json: {}
   /v1/users/{_id}:
+    parameters:
+      - name: _id
+        in: path
+        required: true
+        description: Id do usuário
+        schema:
+          type: string
     get:
-      description: Get a user
+      description: Buscar um usuário pelo Id
       responses:
         200:
           description: OK
@@ -47,7 +61,20 @@ paths:
           content:
             application/json: {}
     put:
-      description: Put a user
+      description: Editar um usuário pelo Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            example:
+              bio: "Bem vindo a minha bio"
+              blog: "https://meublog.com"
+              data: "2025-11-03"
+              location: "Minha cidade"
+              login: "bmarcelb"
+              name: "Marcel Braghini"
       responses:
         200:
           description: OK
@@ -56,7 +83,7 @@ paths:
         404:
           description: Not Found
     delete:
-      description: Delete a user
+      description: Remover um usuário pelo Id
       responses:
         200:
           description: OK
@@ -77,3 +104,7 @@ components:
           type: string
         bio:
           type: string
+        data:
+          type: string
+          format: date
+          description: Data no formato yyyy-MM-dd

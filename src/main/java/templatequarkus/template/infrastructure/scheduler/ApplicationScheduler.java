@@ -1,4 +1,4 @@
-package br.com.marcelbraghini.quarkusrest.taks;
+package templatequarkus.template.infrastructure.scheduler;
 
 import io.quarkus.scheduler.Scheduled;
 import org.jboss.logging.Logger;
@@ -6,9 +6,9 @@ import org.jboss.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class ApliccationTask {
+public class ApplicationScheduler {
 
-    private static final Logger logger = Logger.getLogger(ApliccationTask.class);
+    private static final Logger logger = Logger.getLogger(ApplicationScheduler.class);
 
     @Scheduled(every = "30s")
     public void schedule() {

@@ -1,29 +1,20 @@
-version: '3.7'
-
+version: '3.8'
 services:
   mongodb:
     image: mongo:latest
     container_name: mongodb
+    command: ["mongod", "--bind_ip_all"]
+    restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
       - /tmp/docker/volumes/mongodb:/data/db
-#    networks:
-#      - marcelbraghini
-#
-#  quarkus:
-#    container_name: quarkus
-#    build:
-#      context: ./src/main/docker/
-#      dockerfile: Dockerfile.native
-#    depends_on:
-#      - mongodb
-#    networks:
-#      - marcelbraghini
-#
-#networks:
-#  marcelbraghini:
-#    driver: bridge
+    healthcheck:
+      test: ["CMD", "bash", "-lc", "echo 'db.runCommand({ping:1}).ok' | mongo --quiet --username root --password root --authenticationDatabase admin | grep -q true || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 30s

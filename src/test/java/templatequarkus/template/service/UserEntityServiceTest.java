@@ -1,8 +1,8 @@
-package br.com.marcelbraghini.quarkusrest.service;
+package templatequarkus.template.service;
 
-import br.com.marcelbraghini.quarkusrest.model.User;
+import templatequarkus.template.adapters.databases.entities.UserEntity;
+import templatequarkus.template.application.services.UserService;
 import io.quarkus.test.junit.QuarkusTest;
-import org.bson.types.ObjectId;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
-public class UserServiceTest {
+public class UserEntityServiceTest {
 
     @Inject
     UserService userService;
@@ -21,12 +21,12 @@ public class UserServiceTest {
 
     @Test
     public void testUserSave() {
-        final User user = new User("maquinaZ",
+        final UserEntity userEntity = new UserEntity("maquinaZ",
                 "Maquina Z",
                 "https://google.com.br",
                 "Chapecó-SC-Brasil",
                 "Desenvolvedor Front-End");
-        assertNotNull(userService.save(user));
+        assertNotNull(userService.save(userEntity));
     }
 
     @Test
@@ -36,23 +36,23 @@ public class UserServiceTest {
 
     @Test
     public void testFindAndDelete() {
-        final User user = userService.save(new User("crazydog",
+        final UserEntity userEntity = userService.save(new UserEntity("crazydog",
                 "Crazy Dog",
                 "https://google.com.br",
                 "Chapecó-SC-Brasil",
                 "Desenvolvedor Full Stack"));
 
-        final User userSaved = userService.findById(user.get_id());
-        assertEquals("Crazy Dog", userSaved.getName());
+        final UserEntity userEntitySaved = userService.findById(userEntity.get_id());
+        assertEquals("Crazy Dog", userEntitySaved.getName());
 
-        userService.remove(userSaved.get_id().toHexString());
+        userService.remove(userEntitySaved.get_id().toHexString());
         assertNull(userService.findByName("Crazy Dog"));
         assertNull(userService.findByLogin("crazydog"));
     }
 
     @Test
     public void testToken() {
-        assertEquals("kasdhasdhuyasGDUGASgduAGSDGASHDGJAHSD", token);
+        assertEquals("abc", token);
     }
 
 }

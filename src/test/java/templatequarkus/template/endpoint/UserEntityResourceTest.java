@@ -1,6 +1,6 @@
-package br.com.marcelbraghini.quarkusrest.endpoint;
+package templatequarkus.template.endpoint;
 
-import br.com.marcelbraghini.quarkusrest.service.UserService;
+import templatequarkus.template.application.services.UserService;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.notNullValue;
 
 @QuarkusTest
-public class UserResourceTest {
+public class UserEntityResourceTest {
 
     @Inject
     UserService userService;

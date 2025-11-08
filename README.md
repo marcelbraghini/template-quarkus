@@ -1,6 +1,6 @@
-## Quarkus API Rest 
+## Template Quarkus
 
-##### Sobre mim
+### About application
 
 - Quarkus rest API
 - Openapi
@@ -10,23 +10,18 @@
 - Tests
 - Native image
 
-##### Play no app
+### Get up
 
 ```bash
-mvn quarkus:dev
+mvn clean compile quarkus:dev
 ```
 
-##### Trabalhando com imagens
-```bash
-mvn package -Pnative -Dquarkus.native.container-build=true
 
-docker build -f src/main/docker/Dockerfile.native -t quarkus-rest .
-
-docker run -i --rm -p 8080:8080 quarkus-rest
-```
-
-##### Endpoint do swagger
+### Endpoint do swagger
 
 ```bash
 http://localhost:8080/swagger
 ```
+
+
+curl -X POST http://localhost:8080/v1/users -H "Content-Type: application/json" -d '{ "bio": "string", "blog": "string", "data": "2025-11-03", "location": "string", "login": "marcelbb", "name": "string" }'
