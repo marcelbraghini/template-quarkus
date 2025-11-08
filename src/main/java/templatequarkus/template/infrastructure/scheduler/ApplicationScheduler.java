@@ -3,7 +3,7 @@ package templatequarkus.template.infrastructure.scheduler;
 import io.quarkus.scheduler.Scheduled;
 import org.jboss.logging.Logger;
 
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class ApplicationScheduler {

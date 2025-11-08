@@ -1,5 +1,6 @@
 package templatequarkus.template.application.services;
 
+import jakarta.ws.rs.NotFoundException;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import templatequarkus.template.adapters.databases.entities.UserEntity;
 import templatequarkus.template.adapters.databases.repositories.UserRepository;
 
-import javax.ws.rs.NotFoundException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;

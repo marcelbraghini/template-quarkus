@@ -1,16 +1,15 @@
 package templatequarkus.template.adapters.databases.entities;
 
-import io.quarkus.mongodb.panache.MongoEntity;
-import io.quarkus.runtime.annotations.RegisterForReflection;
+import io.quarkus.mongodb.panache.common.MongoEntity;
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
 
-import javax.json.bind.annotation.JsonbDateFormat;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.json.bind.annotation.JsonbDateFormat;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
-@RegisterForReflection
 @MongoEntity(collection = "users")
 public class UserEntity {
 

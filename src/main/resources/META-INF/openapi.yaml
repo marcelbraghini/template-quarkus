@@ -30,7 +30,7 @@ paths:
               blog: "https://meublog.com"
               data: "2025-11-03"
               location: "Minha cidade"
-              login: "marcel.braghini"
+              login: "0marcel0"
               name: "Marcel Braghini"
       responses:
         201:

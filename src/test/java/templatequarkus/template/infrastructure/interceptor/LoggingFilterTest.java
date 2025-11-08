@@ -2,12 +2,11 @@ package templatequarkus.template.infrastructure.interceptor;
 
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.net.SocketAddress;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.core.UriInfo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.core.UriInfo;
 
 import static org.mockito.Mockito.*;
 
