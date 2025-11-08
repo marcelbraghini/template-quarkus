@@ -21,7 +21,7 @@ public class LoggingFilter implements ContainerRequestFilter {
     public HttpServerRequest request;
 
     @Override
-    public void filter(ContainerRequestContext context) {
+    public void filter(final ContainerRequestContext context) {
         final String path = info.getPath();
         final String address = request.remoteAddress().toString();
         logger.infof("Request %s %s from IP %s", context.getMethod(), path, address);
